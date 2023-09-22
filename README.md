@@ -7,5 +7,13 @@ There's been questions about how fast the various display driver ICs of the TI-8
 - bit 1: Whether the calculator instantly wrote to VRAM. The Kinpo driver should always set this bit, and the Novatek driver should always set this when the test is not performed at 15 MHz. Novatek behavior at 15 MHz is the main subject of LCDTEST8. This bit is always cleared on Toshiba drivers. 
 - bit 0: Whether the calculator sets a busy bit while writing to VRAM. Kinpo drivers are too fast for this to be checked on any hardware, and are never busy. Novatek drivers are likely this fast as well. This bit is always set on Toshiba drivers.
 
+Expected results (per v1.00):
+| Model         | Driver  | Result |
+| ------------- | ------- | ------ |
+| TI-83 Plus    | Kinpo   | 2      |
+| TI-84 Plus    | Kinpo   | 2      |
+| TI-83 Plus    | Novatek | 2      |
+| TI-84 Plus SE | Toshiba | 5      |
+
 ## How?
 Transfer LCDTEST8.8xp from Releases to your calculator (the TI-83 Plus, TI-83 Plus Silver Edition, TI-84 Plus, and TI-84 Plus Silver Edition are supported). From the home screen, run `Asm(prgmLCDTEST8):Ans` and the result will be displayed. The display may flicker, but the display contents are not altered. Calling `Asm(prgmLCDTEST8)` is possible from within TI-BASIC programs, and the result is stored inside Ans. The contents of the graph screen are destroyed (graphs will be re-plotted if the graph screen is reopened, and drawings erased), and the screen does not restore properly if G-T mode is enabled. 
